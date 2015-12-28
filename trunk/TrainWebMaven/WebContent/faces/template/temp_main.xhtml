@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>M.Sc.SE 09 Project - Learning Management System</title>
+	<f:facet name="last">
+		<h:outputStylesheet name="css/stylesheet.css" />
+	</f:facet>
+</h:head>
+<h:body>
+	<f:view locale="th_TH">
+
+		<div
+			style="position: fixed; top: 0; background: #000; width: 100%; z-index: 2;">
+			<div style="width: 960px;text-align: center">
+				<h:graphicImage library="images" name="SIT_logo_header.png"
+					alt="SIT Logo" styleClass="main-logo" width="50%" />
+			</div>
+
+		</div>
+		<div id="mainconetent">
+			<div id="header">
+				<div class="span11">
+					<h:form>
+						<p:tabMenu>
+							<p:menuitem value="ADD" icon="ui-icon-document"
+								action="#{trainAction.pageCreate()}" ajax="false" />
+
+							<p:menuitem value="DELETE" icon="ui-icon-document"
+								action="#{trainAction.pageDelete()}" ajax="false" />
+
+						</p:tabMenu>
+					</h:form>
+				</div>
+			</div>
+			<div id="content">
+				<div class="main-body">
+					<h:form id="mainFrm">
+						
+
+						<p:ajaxStatus onstart="statusDlg.show();"
+							onsuccess="statusDlg.hide();" />
+
+						<p:dialog header="Processing" widgetVar="statusDlg" width="250"
+							modal="true" draggable="false" closable="false">
+							<h:graphicImage library="images" name="ajaxloadingbar.gif"
+								alt="Processing" />
+						</p:dialog>
+
+						<h:outputText value="#{msg['inbox.label.testmsg']}"
+							styleClass="styleTxtLargeRedBold" />
+
+						<ui:insert name="body" />
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="clear"></div>
+			<div class="footer-line">
+				<h:outputText
+					value="Copyright © 2012 School of Information Technology. All rights reserved." />
+			</div>
+		</div>
+	</f:view>
+</h:body>
+</html>

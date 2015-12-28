@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/faces/template/temp_main.xhtml">
+
+	<ui:define name="body">
+
+		<h:panelGrid width="100%" cellpadding="1" cellspacing="1">
+			<h:panelGroup>
+				<p:panel header="UPLOAD PHOTO TRAIN">
+					<h:form enctype="multipart/form-data" id="uploadForm"
+						styleClass="ui-widget-filebucket-upload ui-widget-content ui-corner-bottom ui-corner-top">
+						<table>
+							<tr>
+								<td><strong>STUDENT ID:</strong></td>
+								<td>
+									<p:selectOneRadio id="chkRadio" value="#{trainAction.select}" layout="custom" valueChangeListener="#{trainAction.TypeChange}">
+										<f:selectItem itemLabel="Option 1" itemValue= "1" />
+										<f:selectItem itemLabel="Option 2" itemValue= "2" />
+										<f:ajax process="@this" update="@form" render="@all"/>
+									</p:selectOneRadio> 
+									<p:radioButton id="opt1" for="chkRadio" itemIndex="0" />
+									<h:outputLabel for="opt1" value="Option 1" /> 
+									<h:inputText class="input_username" id="j_username" name="j_username" type="text" value="" disabled="#{trainAction.disInput}"/> 
+									<strong style="color: red">
+										Example : KMUTT-55441338</strong> &nbsp;<br></br>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><p:radioButton id="opt2" for="chkRadio" itemIndex="1" />
+									<h:outputLabel for="opt2" value="Option 2" /> 
+									<!--  <input name="dOption" type="radio" value="true"
+									id="chkRadio" onclick="j_username.disabled=true;" />
+									value="#{trainAction.studentId}" 
+									--> 
+									<p:selectOneMenu id="j_uusername" value="#{trainAction.studentId}" disabled="#{trainAction.disInput2}">
+										<f:selectItem itemLabel="Select Student ID" itemValue="" />
+										<f:selectItems value="#{trainAction.studentList}" />
+										<p:ajax event="change" update="allimg"
+											listener="#{trainAction.searchImage}" />
+									</p:selectOneMenu></td>
+							</tr>
+						</table>
+						<p:panel id="allimg" header="All Image">
+							<p:dataGrid var="img" value="#{trainAction.imageList}"
+								columns="3" rows="12">
+								<p:column>
+									<p:panel header="">
+										<h:panelGrid columns="1">
+											<p:graphicImage value="#{img}" width="230" height="150" />
+										</h:panelGrid>
+									</p:panel>
+								</p:column>
+							</p:dataGrid>
+						</p:panel>
+						<p:fileUpload id="upload_control"
+							fileUploadListener="#{trainAction.uploadFileMultiple}"
+							fileLimit="5" allowTypes="/(\.|\/)(jpe?g)$/"
+							multiple="true" oncomplete="javascript:window.location.reload()"
+							label="#{bundle['choose_button']}"
+							uploadLabel="#{bundle['upload_button']}"
+							cancelLabel="#{bundle['cancel_button']}" />
+
+					</h:form>
+				</p:panel>
+				<p:panel header="UPLOAD PHOTO COMPLETE">
+					<p:outputLabel value="#{trainAction.studentId}"></p:outputLabel>
+				</p:panel>
+			</h:panelGroup>
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>
+</html>

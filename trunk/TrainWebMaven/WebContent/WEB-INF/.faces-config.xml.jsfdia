@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#faces#create.xhtml"
+  PATH="/faces/create.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#*" PATH="/*" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:0" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="create::#faces#create.xhtml" NAME="output"
+    PATH="/faces/create.xhtml" TARGET="rules:#faces#create.xhtml"
+    TITLE="create" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="delete::#faces#delete.xhtml" NAME="output2"
+    PATH="/faces/delete.xhtml" TARGET="rules:#faces#delete.xhtml"
+    TITLE="delete" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#faces#delete.xhtml"
+  PATH="/faces/delete.xhtml" SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

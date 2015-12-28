@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserProfile">
+
+	<select id="getUserProfile" resultType="userProfile" parameterType="map">
+
+		SELECT
+
+			 a.ID			AS id
+			,a.USERNAME     AS username
+			,a.PASSWORD     AS password
+			,a.SALUTATION   AS salutation
+			,a.FIRST_NAME	AS firstName
+			,a.LAST_NAME	AS lastName
+			,a.IS_ADMIN     AS isAdmin
+			
+		FROM USER_PROFILE a
+		
+		WHERE USERNAME = #{username} 
+			  AND PASSWORD = #{password}
+			  
+	</select>
+
+	<update id="update" parameterType="map">
+		UPDATE USER_PROFILE
+		
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="firstName != null">
+				 , FIRST_NAME = #{firstName}
+			</if>
+			<if test="lastName != null">
+				 , LAST_NAME = #{lastName}
+			</if>	
+		</trim>
+		
+		WHERE ID = #{id} AND USERNAME = #{username}
+	</update>
+	
+	<insert id="create"  parameterType="userProfile">
+		INSERT INTO USER_PROFILE
+		(USERNAME,PASSWORD,SALUTATION,FIRST_NAME,LAST_NAME,IS_ADMIN)
+		VALUES
+		(#{username},#{password}
+		,#{salutation},#{firstName}
+		,#{lastName},#{isAdmin})
+	</insert>
+	
+	<delete id="delete" parameterType="map">
+		DELETE FROM USER_PROFILE WHERE USERNAME = #{username}
+	</delete>
+	
+</mapper>

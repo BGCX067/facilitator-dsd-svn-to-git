@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:composition template="/faces/template/temp_main.xhtml">
+		
+	<h:body>
+	<f:view locale="th_TH">
+		<h:panelGrid width="100%" cellpadding="0" cellspacing="0">
+			<h:panelGroup>
+				<table width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td align="center">
+							<div style="width: 1000px; text-align: left;" class="main-bg">
+								<div class="main-body">
+									<h:graphicImage library="images" name="SIT_logo_header.png" alt="SIT Logo" styleClass="main-logo" />
+							  <p:panel>
+								<f:facet name="header">
+									<h:outputText id="userProfile" value="Register"/>
+								</f:facet>
+								<h:panelGroup>
+								<h:form>
+									<table width="50%" align="center" cellspacing="2">
+										<br/>
+										
+									</table>
+								  </h:form>
+								</h:panelGroup>
+								</p:panel>
+							</div>			
+						</div>
+							<div class="clear" ></div>
+							<div class="footer-line" >
+								<h:outputText value="Copyright © 2012 School of Information Technology. All rights reserved." />
+							</div></td>
+					</tr>
+				</table>
+			</h:panelGroup>
+		</h:panelGrid>
+	</f:view>
+</h:body>
+	</ui:composition>
+	
+</html>

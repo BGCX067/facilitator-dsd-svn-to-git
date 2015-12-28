@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/faces/template/temp_main.xhtml">
+	<ui:define name="body">
+		<h:panelGrid width="100%" cellpadding="1" cellspacing="1">
+			<h:panelGroup>
+				<p:panel header="DELETE PHOTO TRAIN">
+					<table>
+						<tr>
+							<td></td>
+							<td><p:selectOneMenu id="id"
+									value="#{trainAction.studentId}">
+									<f:selectItem itemLabel="Select Student ID" itemValue="" />
+									<f:selectItems value="#{trainAction.studentList}" />
+									<p:ajax event="change" update="allimg"
+										listener="#{trainAction.searchImage}" />
+								</p:selectOneMenu></td>
+
+							<td><p:commandButton value="Delete Image" update="id,msg"
+									oncomplete="javascript:window.location.reload()" id="ajax"
+									actionListener="#{trainAction.selectDelete(2)}">
+								</p:commandButton> <p:commandButton value="Delete User" update="id,msg" id="ajax2"
+								oncomplete="javascript:window.location.reload()"
+									actionListener="#{trainAction.selectDelete(1)}">
+								</p:commandButton></td>
+						</tr>
+					</table>
+				</p:panel>
+				<br></br>
+				<hr></hr>
+				<br></br>
+				<p:panel header="DELETE PHOTO COMPLETE">
+					<p:outputLabel id="msg" value="#{trainAction.message}"></p:outputLabel>
+				</p:panel>
+				<br></br>
+				<hr></hr>
+				<br></br>
+				<p:panel id="allimg" header="All Image">
+					<p:dataGrid var="img" value="#{trainAction.imageList}" columns="3"
+						rows="12">
+						<p:column>
+							<p:panel header="#{trainAction.studentId}">
+								<h:panelGrid style="text-align:center" columns="1">
+									<p:graphicImage value="#{img}" style="margin:0 auto;"
+										width="200px" />
+									<input type="checkbox" name="deleteList" value="#{img}"></input>
+								</h:panelGrid>
+							</p:panel>
+						</p:column>
+					</p:dataGrid>
+				</p:panel>
+
+			</h:panelGroup>
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TrainHistory">
+
+	<select id="getTrainHistory" resultType="trainHistory."
+		parameterType="map">
+
+		SELECT
+
+		 t.HISTORY_ID 	 AS historyID
+		,t.STUDENT_ID 	 AS studenId
+		,t.FILEIMAGE_URL AS fileImageURL
+		,t.LOCATION_DISK AS locationDisk
+		,t.STATUS		 AS status
+		,t.CREATE_DATE	 AS craeteDate
+		,t.CRATE_BY 	 AS createBy
+		,t.UPDATE_DATE	 AS updateDate
+		,t.UPDATE_BY	 AS updateBy
+
+		FROM TRAIN_HISTORY t
+
+		WHERE STUDENT_ID = #{studenId}
+	
+	</select>
+
+	<update id="update" parameterType="map">
+		UPDATE TRAIN_HISTORY
+
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="historyID != null">
+				, HISTORY_ID = #{historyID}
+			</if>
+			<if test="studenId != null">
+				, STUDENT_ID = #{studenId}
+			</if>
+			<if test="fileImageURL != null">
+				, FILEIMAGE_URL = #{fileImageURL}
+			</if>
+			<if test="locationDisk != null">
+				, LOCATION_DISK = #{locationDisk}
+			</if>
+			<if test="status != null">
+				, STATUS = #{status}
+			</if>
+			<if test="updateDate != null">
+				, UPDATE_DATE = #{updateDate}
+			</if>
+			<if test="updateBy != null">
+				, UPDATE_BY = #{updateBy}
+			</if>
+		</trim>
+
+		WHERE ID = #{id} AND STUDENT_ID = #{studenId}
+	</update>
+
+	<insert id="create" parameterType="userProfile">
+		INSERT INTO TRAIN_HISTORY
+		(STUDENT_ID,FILEIMAGE_URL,LOCATION_DISK,STATUS,CREATE_DATE,CRATE_BY,UPDATE_DATE,UPDATE_BY)
+		VALUES
+		(#{studenId},#{fileImageURL}
+		,#{locationDisk},#{status}
+		,#{craeteDate},#{createBy}
+		,#{updateDate},#{updateBy})
+	</insert>
+
+	<delete id="delete" parameterType="map">
+		DELETE FROM TRAIN_HISTORY WHERE
+		STUDENT_ID = #{studenId}
+	</delete>
+
+</mapper>
